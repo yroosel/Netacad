@@ -1,2 +1,2 @@
 # Netacad
-Experiments regarding  new Netacad courses
+Experiments regarding Netacad DEVASC courses
