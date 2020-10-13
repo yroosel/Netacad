@@ -1,2 +1,2 @@
 # Netacad
-Experiments regarding Netacad DEVASC courses
+Examples scripts and practical work for the Netacad DEVASC courses
