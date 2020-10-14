@@ -1,3 +1,4 @@
 # Netacad-DEVASC
-# Version 0.9
+# Version 1.0
 Sample files for DevNet Associatte Training
+
