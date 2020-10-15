@@ -1,0 +1,269 @@
+#### 2020-10-15 Y. ROOSELEER
+#### DEVASC EXAM QUESTIONS SAMPLE -- PYTHON API REQUEST -- WEBEX TEAMS API
+
+#### 1 SCRIPT WITHOUT COMMENTS
+
+import requests
+import json
+current_access_token = "A....Z"
+uri_scheme = 'https://'
+uri_authority_server = 'api.ciscospark.com'
+uri_api_path = '/v1/people/me'
+url = uri_scheme + uri_authority_server + uri_api_path 
+headers = {
+    'Authorization': 'Bearer {}'.format(current_access_token),
+    'Content-Type': 'application/json'
+}
+res = requests.get(url, headers=headers)
+user_name = res.json()['displayName']
+if res.status_code == 200:
+    print("Status is OK")
+	print("Username: " + user_name)
+else:
+    print("Status is not OK")
+
+#### 2 FILL IN THE MISSING PART
+
+import requests
+import json
+current_access_token = "A....Z"
+uri_scheme = 'https://'
+uri_authority_server = 'api.ciscospark.com'
+uri_api_path = '/v1/people/me'
+url = uri_scheme + uri_authority_server + uri_api_path 
+headers = {
+    'Authorization': 'XXXXXXXXX {}'.format(current_access_token),
+    'Content-Type': 'application/json'
+}
+res = requests.get(url, headers=headers)
+user_name = res.json()['displayName']
+if res.status_code == 200:
+    print("Status is OK")
+	print("Username: " + user_name)
+else:
+    print("Status is not OK")
+
+
+#### 3 FILL IN THE MISSING PART
+
+import requests
+import json
+current_access_token = "A....Z"
+uri_scheme = 'https://'
+uri_authority_server = 'api.ciscospark.com'
+uri_api_path = '/v1/people/me'
+url = uri_scheme + uri_authority_server + uri_api_path 
+headers = {
+    'Authorization': 'Bearer {}'.format(current_access_token),
+    'Content-Type': 'application/json'
+}
+res = requests.XXXXXXXXX(url, headers=headers)
+user_name = res.json()['displayName']
+if res.status_code == 200:
+    print("Status is OK")
+	print("Username: " + user_name)
+else:
+    print("Status is not OK")
+
+
+#### 4 FILL IN THE MISSING PART
+
+import requests
+import json
+current_access_token = "A....Z"
+uri_scheme = 'https://'
+uri_authority_server = 'api.ciscospark.com'
+uri_api_path = '/v1/people/me'
+url = uri_scheme + uri_authority_server + uri_api_path 
+headers = {
+    'Authorization': 'Bearer {}'.format(current_access_token),
+    'Content-Type': 'application/json'
+}
+res = requests.get(XXXXXXXXX, headers=headers)
+user_name = res.json()['displayName']
+if res.status_code == 200:
+    print("Status is OK")
+	print("Username: " + user_name)
+else:
+    print("Status is not OK")
+
+
+#### 5 FILL IN THE MISSING PART
+
+import requests
+import json
+current_access_token = "A....Z"
+uri_scheme = 'https://'
+uri_authority_server = 'api.ciscospark.com'
+uri_api_path = '/v1/people/me'
+url = uri_scheme + uri_authority_server + uri_api_path 
+headers = {
+    'Authorization': 'Bearer {}'.format(current_access_token),
+    'Content-Type': 'application/json'
+}
+res = requests.get(url, headers=XXXXXXXXX)
+user_name = res.json()['displayName']
+if res.status_code == 200:
+    print("Status is OK")
+	print("Username: " + user_name)
+else:
+    print("Status is not OK")
+
+
+
+#### 6 FILL IN THE MISSING PART
+
+import requests
+import json
+current_access_token = "A....Z"
+uri_scheme = 'https://'
+uri_authority_server = 'api.ciscospark.com'
+uri_api_path = '/v1/people/me'
+url = uri_scheme + uri_authority_server + uri_api_path 
+headers = {
+    'Authorization': 'Bearer {}'.format(current_access_token),
+    'Content-Type': 'application/json'
+}
+res = requests.get(url, headers=headers)
+user_name = res.XXXXXXXXX()['displayName']
+if res.status_code == 200:
+    print("Status is OK")
+	print("Username: " + user_name)
+else:
+    print("Status is not OK")
+	
+
+
+#### 7 FILL IN THE MISSING PART
+
+import requests
+import json
+current_access_token = "A....Z"
+uri_scheme = 'https://'
+uri_authority_server = 'api.ciscospark.com'
+uri_api_path = '/v1/people/me'
+url = uri_scheme + uri_authority_server + uri_api_path 
+headers = {
+    'Authorization': 'Bearer {}'.format(current_access_token),
+    'Content-Type': 'application/json'
+}
+res = requests.get(url, headers=headers)
+user_name = res.json()['displayName']
+if res.status_code == XXXXXXXXX:
+    print("Status is OK")
+	print("Username: " + user_name)
+else:
+    print("Status is not OK")
+	
+	
+#### 8 FILL IN THE MISSING PART
+
+import requests
+import json
+current_access_token = "A....Z"
+uri_scheme = 'https://'
+uri_authority_server = 'api.ciscospark.com'
+uri_api_path = '/v1/people/me'
+url = uri_scheme + uri_authority_server + uri_api_path 
+headers = {
+    'Authorization': 'Bearer {}'.format(current_access_token),
+    'Content-Type': 'application/json'
+}
+res = requests.get(url, headers=headers)
+user_name = res.json()['displayName']
+if res.XXXXXXXXX == 200:
+    print("Status is OK")
+	print("Username: " + user_name)
+else:
+    print("Status is not OK")
+	
+	
+
+#### 9 FILL IN THE MISSING PART
+
+import requests
+import json
+current_access_token = "A....Z"
+uri_scheme = 'https://'
+uri_authority_server = 'api.ciscospark.com'
+uri_api_path = '/v1/people/me'
+url = uri_scheme + uri_authority_server + uri_api_path 
+headers = {
+    'Authorization': 'Bearer {}'.format(current_access_token),
+    'Content-Type': 'application/json'
+}
+res = requests.get(url, headers=headers)
+user_name = res.json()['displayName']
+if res.status_code == 200:
+    print("Status is OK")
+	print("Username: " + user_name)
+else:
+    print("Status is not OK")
+	
+
+	
+#### 10 FILL IN THE MISSING PART
+
+import requests
+import json
+current_access_token = "A....Z"
+uri_scheme = 'https://'
+uri_authority_server = 'api.ciscospark.com'
+uri_api_path = '/v1/people/me'
+url = uri_scheme + uri_authority_server + uri_api_path 
+headers = {
+    'Authorization': 'Bearer {}'.format(current_access_token),
+    'Content-Type': 'application/json'
+}
+res = requests.request('XXXXXXXXX', url, headers=headers)
+user_name = res.json()['displayName']
+if res.status_code == 200:
+    print("Status is OK")
+	print("Username: " + user_name)
+else:
+    print("Status is not OK")
+	
+	
+	
+#### 11 FILL IN THE MISSING PART
+
+import requests
+import XXXXXXXXX
+current_access_token = "A....Z"
+uri_scheme = 'https://'
+uri_authority_server = 'api.ciscospark.com'
+uri_api_path = '/v1/people/me'
+url = uri_scheme + uri_authority_server + uri_api_path 
+headers = {
+    'Authorization': 'Bearer {}'.format(current_access_token),
+    'Content-Type': 'application/json'
+}
+res = requests.get(url, headers=headers)
+user_name = res.json()['displayName']
+if res.status_code == 200:
+    print("Status is OK")
+	print("Username: " + user_name)
+else:
+    print("Status is not OK")
+	
+	
+#### 12 FILL IN THE MISSING PART
+
+import requests
+import json
+current_access_token = "A....Z"
+uri_scheme = 'https://'
+uri_authority_server = 'api.ciscospark.com'
+uri_api_path = '/v1/people/me'
+url = uri_scheme + uri_authority_server + uri_api_path 
+headers = {
+    'Authorization': 'Bearer {}'.format(current_access_token),
+    'Content-Type': 'application/json'
+}
+res = XXXXXXXXX.get(url, headers=headers)
+user_name = res.json()['displayName']
+if res.status_code == 200:
+    print("Status is OK")
+	print("Username: " + user_name)
+else:
+    print("Status is not OK")
