@@ -3,7 +3,7 @@
 ##   Converting subnet mask into prefix notation
 ##   Getting numer of hosts for a specific prefix
 ##   Data based solution, without calc => learning dict and json
-#### USE UNITTEST TO CHECK THE CORRECTNESS OF THE FICE FUNCTIONS
+#### USE UNITTEST TO CHECK THE CORRECTNESS OF THE FIVE FUNCTIONS
 
 netmask_prefixes = {
      '255.255.255.255': '/32'
