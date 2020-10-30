@@ -5,6 +5,7 @@
 
 
 #### DNA Center => Manage Enterprise Networks and Devices
+#### Adapted by Y. Rooseleer, BIASC
 #STEP 1 => DEFINE HARD CODED VARIABLES TO BE USED IN THE SCRIPT
 import requests
 import datetime

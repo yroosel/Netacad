@@ -5,7 +5,7 @@
 
 
 #### Google Geocoding API
-#### Y. Rooseleer, BiASC
+#### Adapted by Y. Rooseleer, BIASC
 #### => API Calls, Request/Response, Authentication, Data Management/Filtering/Selecting/Transforming
 
 import requests

@@ -1,4 +1,5 @@
 #### FIVE FUNCTIONS TO HELP DESIGN IP SUBNETS 
+#### Y. Rooseleer, BIASC
 ##   IPv4 subnet masks, prefixes, number of addressess, number of hosts
 ##   Converting subnet mask into prefix notation
 ##   Getting numer of hosts for a specific prefix
