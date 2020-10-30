@@ -1,7 +1,7 @@
 #### 2020-10-15 Y. ROOSELEER
 #### DEVASC EXAM QUESTIONS SAMPLE -- PYTHON API REQUEST -- WEBEX TEAMS API
 
-#### 1 SCRIPT WITHOUT COMMENTS
+#### 1 EXAMPLE SCRIPT (WITHOUT COMMENTS)
 
 import requests
 import json
@@ -190,8 +190,7 @@ uri_api_path = '/v1/people/me'
 url = uri_scheme + uri_authority_server + uri_api_path 
 headers = {
     'Authorization': 'Bearer {}'.format(current_access_token),
-    'Content-Type': 'application/json'
-}
+    'Content-Type': 'XXXXXXXXX'
 res = requests.get(url, headers=headers)
 user_name = res.json()['displayName']
 if res.status_code == 200:
