@@ -5,7 +5,7 @@
 
 import requests
 import json
-current_access_token = "A....Z"
+current_access_token = "A0123463Z"
 uri_scheme = 'https://'
 uri_authority_server = 'api.ciscospark.com'
 uri_api_path = '/v1/people/me'
@@ -215,6 +215,7 @@ headers = {
     'Content-Type': 'application/json'
 }
 res = requests.request('XXXXXXXXX', url, headers=headers)
+
 user_name = res.json()['displayName']
 if res.status_code == 200:
     print("Status is OK")
@@ -266,3 +267,5 @@ if res.status_code == 200:
 	print("Username: " + user_name)
 else:
     print("Status is not OK")
+	
+	
