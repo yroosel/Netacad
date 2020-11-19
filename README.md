@@ -7,5 +7,5 @@ Sample files for DevNet Associate Training
 -4- Google Geocoding API
 -5- Cisco DNA Center Hello Network Simple
 -6- DEVASC Parsing, Converting, Filtering
--7- netmiko
+-7- netmiko example
 
