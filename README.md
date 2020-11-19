@@ -5,6 +5,7 @@ Sample files for DevNet Associate Training
 -2- Micro Web Framework API Scripts (Flask)
 -3- unittest example scripts
 -4- Google Geocoding API
--5- Cisoc DNA Center Hello Network Simple
+-5- Cisco DNA Center Hello Network Simple
 -6- DEVASC Parsing, Converting, Filtering
+-7- netmiko
 
