@@ -1,0 +1,42 @@
+---
+- name: IOS_COMMANDS_PB
+  hosts: CSR1Kv
+  gather_facts: false
+  connection: local
+
+  tasks:
+   - name: run show version on remote devices
+     ios_command:
+       commands: show version
+
+   - name: run show version and check to see if output contains IOS
+     ios_command:
+       commands: show version
+       wait_for: result[0] contains IOS
+
+   - name: run multiple commands on remote nodes
+     ios_command:
+       commands:
+         - show version
+         - show interfaces
+
+   - name: run multiple commands and evaluate the output
+     ios_command:
+       commands:
+         - show version
+         - show interfaces
+       wait_for:
+         - result[0] contains IOS
+         - result[1] contains GigabitEthernet1
+
+   - name: run commands that require answering a prompt
+     ios_command:
+       commands:
+        - command: clear counters GigabitEthernet1
+          prompt: Clear "show interface" counters on this interface [confirm]
+          answer: y
+        - command: clear counters GigabitEthernet1
+          prompt:  '[confirm]' 
+          answer: y
+
+
