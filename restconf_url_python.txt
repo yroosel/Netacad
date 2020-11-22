@@ -1,0 +1,137 @@
+RESTCONF & CURL 
+
+This document shows examples of restconf operations with a virtual cisco ios xe router
+Task: Translate the curl commands into python scripts
+
+Preparation 1
+
+Verify  RESTCONF server is up and running with a quick curl test: XML
+curl -k https://192.168.56.107/restconf/ -u 'cisco:cisco123!'
+
+Verify  RESTCONF server is up and running with a quick curl test: JSON
+curl -H "Accept: application/yang-data+json" -k https://192.168.56.107/restconf/ -u 'cisco:cisco123!'
+
+Retrieving the full running configuration /XML
+curl -k https://192.168.56.107/restconf/data/Cisco-IOS-XE-native:native/ -u 'cisco:cisco123!'
+
+Retrieving the full running configuration /JSON
+curl -H "Accept: application/yang-data+json" -k https://192.168.56.107/restconf/data/Cisco-IOS-XE-native:native/ -u 'cisco:cisco123!'
+
+Retrieving the interface configuration of "GigabitEthernet 1" /XML
+curl -k https://192.168.56.107/restconf/data/Cisco-IOS-XE-native:native/interface/GigabitEthernet=1 -u 'cisco:cisco123!'
+
+Retrieving the interface configuration of "GigabitEthernet 1" /JSON
+curl -H "Accept: application/yang-data+json" -k https://192.168.56.107/restconf/data/Cisco-IOS-XE-native:native/interface/GigabitEthernet=1 -u 'cisco:cisco123!'
+
+---
+Preparation 2
+
+# conf t
+# logging on
+# logging monitor
+# end
+
+---
+root:~# 
+---
+CURL COMMAND - OPTIONS
+
+curl -i -k -X "OPTIONS" \
+"https://192.168.56.107:443/restconf/data/Cisco-IOS-XE-native:native/logging/monitor/severity" \
+-H 'Accept: application/yang-data+json' \
+-u 'cisco:cisco123!'
+
+EXAMPLE RESPONSE
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 23 Apr 2018 15:27:57 GMT
+Content-Type: text/html
+Content-Length: 0
+Connection: keep-alive
+Allow: DELETE, GET, HEAD, PATCH, POST, PUT, OPTIONS >>>>>>>>>>> Allowed methods
+Cache-Control: private, no-cache, must-revalidate, proxy-revalidate
+Accept-Patch: application/yang-data+xml, application/yang-data+json
+Pragma: no-cache
+
+---
+CURL COMMAND - POST
+Device:~# 
+Remark => activate "logging monitor" on the device first through cli
+
+# conf t
+# logging on
+# logging monitor
+# end
+
+
+curl -i -k -X "POST" "https://192.168.56.107:443/restconf/data/Cisco-IOS-XE-native:native/logging/monitor" \
+-H 'Content-Type: application/yang-data+json' \
+-H 'Accept: application/yang-data+json' \
+-u 'cisco:cisco123!' \
+-d $'{
+       "severity": "alerts"
+}'
+
+HTTP/1.1 201 Created
+Server: nginx
+Date: Sun, 22 Nov 2020 11:20:37 GMT
+Content-Type: text/html
+Content-Length: 0
+Location: https://192.168.56.107/restconf/data/Cisco-IOS-XE-native:native/logging/monitor/severity
+Connection: keep-alive
+Last-Modified: Sun, 22 Nov 2020 11:20:36 GMT
+Cache-Control: private, no-cache, must-revalidate, proxy-revalidate
+Etag: 1606-44036-936119
+Pragma: no-cache
+
+
+CURL COMMAND - PUT
+Device:~# 
+
+curl -i -k -X "PUT" "https://192.168.56.107:443/restconf/data/Cisco-IOS-XE-native:native/logging/monitor/severity" \
+-H 'Content-Type: application/yang-data+json' \
+-H 'Accept: application/yang-data+json' \
+-u 'cisco:cisco123!' \
+-d $'{
+       "severity": "warnings"
+}'
+
+HTTP/1.1 204 No Content
+Server: nginx
+Date: Sun, 22 Nov 2020 11:21:29 GMT
+Content-Type: text/html
+Content-Length: 0
+Connection: keep-alive
+Last-Modified: Sun, 22 Nov 2020 11:21:28 GMT
+Cache-Control: private, no-cache, must-revalidate, proxy-revalidate
+Etag: 1606-44088-916333
+Pragma: no-cache
+
+CURL COMMAND - PATCH
+Device:~# 
+---
+curl -i -k -X "PATCH" "https://192.168.56.107:443/restconf/data/Cisco-IOS-XE-native:native" \
+-H 'Content-Type: application/yang-data+json' \
+-H 'Accept: application/yang-data+json' \
+-u 'cisco:cisco123!' \
+-d $'{
+"native": {
+"logging": {
+"monitor": {
+"severity": "informational"
+}
+}
+}
+}'
+
+---
+SOURCES
+
+RESTCONF Protocol
+URL: 
+https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/prog/configuration/169/b_169_programmability_cg/restconf_programmable_interface.pdf#page9
+
+More examples curl and python
+RESTCONF Tutorial - Everything you need to know about RESTCONF in 2020
+URL:
+https://ultraconfig.com.au/blog/restconf-tutorial-everything-you-need-to-know-about-restconf-in-2020/
