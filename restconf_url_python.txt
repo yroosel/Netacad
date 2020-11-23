@@ -132,6 +132,7 @@ EXAMPLEs: CURL COMMANDS USING RESTCONF TO CONFIGURE AND TO MONITOR
 
 -1- CURL COMMAND - OPTIONS
 
+Command/ request
 curl -i -k -X "OPTIONS" \
 "https://192.168.56.107:443/restconf/data/Cisco-IOS-XE-native:native/logging/monitor/severity" \
 -H 'Accept: application/yang-data+json' \
@@ -155,10 +156,10 @@ Pragma: no-cache
 Remark => you may have to activate "logging monitor" on the device first (through cli)
 
 # conf t
-# logging on
 # logging monitor
 # end
 
+Command/ request
 curl -i -k -X "POST" "https://192.168.56.107:443/restconf/data/Cisco-IOS-XE-native:native/logging/monitor" \
 -H 'Content-Type: application/yang-data+json' \
 -H 'Accept: application/yang-data+json' \
@@ -167,6 +168,7 @@ curl -i -k -X "POST" "https://192.168.56.107:443/restconf/data/Cisco-IOS-XE-nati
        "severity": "alerts"
 }'
 
+Output/ response
 HTTP/1.1 201 Created
 Server: nginx
 Date: Sun, 22 Nov 2020 11:20:37 GMT
@@ -182,6 +184,8 @@ Pragma: no-cache
 
 -3- CURL COMMAND - PUT
 => Change the severity level to warnings
+
+Command/ request
 curl -i -k -X "PUT" "https://192.168.56.107:443/restconf/data/Cisco-IOS-XE-native:native/logging/monitor/severity" \
 -H 'Content-Type: application/yang-data+json' \
 -H 'Accept: application/yang-data+json' \
@@ -190,6 +194,7 @@ curl -i -k -X "PUT" "https://192.168.56.107:443/restconf/data/Cisco-IOS-XE-nativ
        "severity": "warnings"
 }'
 
+Output/ response
 HTTP/1.1 204 No Content
 Server: nginx
 Date: Sun, 22 Nov 2020 11:21:29 GMT
@@ -205,6 +210,7 @@ Pragma: no-cache
 -4- CURL COMMAND - PATCH
 => Change the severity level to informational
 
+Command/ request
 curl -i -k -X "PATCH" "https://192.168.56.107:443/restconf/data/Cisco-IOS-XE-native:native" \
 -H 'Content-Type: application/yang-data+json' \
 -H 'Accept: application/yang-data+json' \
@@ -220,7 +226,6 @@ curl -i -k -X "PATCH" "https://192.168.56.107:443/restconf/data/Cisco-IOS-XE-nat
 }'
 
 Output/ response
-
 HTTP/1.1 204 No Content
 Server: nginx
 Date: Sun, 22 Nov 2020 20:05:15 GMT
@@ -231,6 +236,20 @@ Last-Modified: Sun, 22 Nov 2020 20:05:15 GMT
 Cache-Control: private, no-cache, must-revalidate, proxy-revalidate
 Etag: 1606-75515-266750
 Pragma: no-cache
+
+Other curl examples
+
+GET command/ request
+curl -H "Accept: application/yang-data+json" -k -X "GET" "https://192.168.56.107/restconf/data/Cisco-IOS-XE-native:native/logging/monitor/severity" -u 'cisco:cisco123!'
+
+output/ response
+{
+  "Cisco-IOS-XE-native:severity": "alerts"
+}
+
+DELETE command/ request
+curl -H "Accept: application/yang-data+json" -k -X "DELETE" "https://192.168.56.107/restconf/data/Cisco-IOS-XE-native:native/logging/monitor/severity" -u 'cisco:cisco123!'
+
 
 
 --------
