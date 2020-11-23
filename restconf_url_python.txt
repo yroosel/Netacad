@@ -1,68 +1,163 @@
 RESTCONF & CURL 
 
-This document shows examples of restconf operations with a virtual cisco ios xe router
+This document shows examples of curl restconf operations with a virtual cisco ios xe router
 Task: Translate the curl commands into python scripts
 
-Preparation 1
+Preparation Part 1
 
+-1-
 Verify  RESTCONF server is up and running with a quick curl test: XML
 curl -k https://192.168.56.107/restconf/ -u 'cisco:cisco123!'
 
+Output/ response
+<restconf xmlns="urn:ietf:params:xml:ns:yang:ietf-restconf">
+  <data/>
+  <operations/>
+  <yang-library-version>2016-06-21</yang-library-version>
+</restconf>
+
+-2-
 Verify  RESTCONF server is up and running with a quick curl test: JSON
 curl -H "Accept: application/yang-data+json" -k https://192.168.56.107/restconf/ -u 'cisco:cisco123!'
 
-Retrieving the full running configuration /XML
+Output/ response
+{"ietf-restconf:restconf":{"data":{},"operations":{},"yang-library-version":"2016-06-21"}}
+
+-3-
+Retrieve the full running configuration /XML
 curl -k https://192.168.56.107/restconf/data/Cisco-IOS-XE-native:native/ -u 'cisco:cisco123!'
 
-Retrieving the full running configuration /JSON
+Partial output/response
+<native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native"  xmlns:ios="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+  <version>16.9</version>
+...
+<hostname>CSR1kv</hostname>
+<username>
+  <name>cisco</name>
+  <privilege>15</privilege>
+  <password>
+    <encryption>0</encryption>
+    <password>cisco123</password>
+  </password>
+</username>
+...
+
+  
+-4-
+Retrieve the full running configuration /JSON
 curl -H "Accept: application/yang-data+json" -k https://192.168.56.107/restconf/data/Cisco-IOS-XE-native:native/ -u 'cisco:cisco123!'
 
-Retrieving the interface configuration of "GigabitEthernet 1" /XML
+Partial output/ response
+
+{
+  "Cisco-IOS-XE-native:native": {
+    "version": "16.9",
+    "boot-start-marker": [null],
+    "boot-end-marker": [null],
+    "banner": {
+      "motd": {
+        "banner": "^C"
+      }
+    },
+...
+"hostname": "CSR1kv",
+    "username": [
+      {
+        "name": "cisco",
+        "privilege": 15,
+        "password": {
+          "encryption": "0",
+          "password": "cisco123"
+        }
+      }
+...
+
+-5- 
+Retrieve the interface configuration of "GigabitEthernet 1" /XML
 curl -k https://192.168.56.107/restconf/data/Cisco-IOS-XE-native:native/interface/GigabitEthernet=1 -u 'cisco:cisco123!'
 
-Retrieving the interface configuration of "GigabitEthernet 1" /JSON
+-6- 
+Retrieve the interface configuration of "GigabitEthernet 1" /JSON
 curl -H "Accept: application/yang-data+json" -k https://192.168.56.107/restconf/data/Cisco-IOS-XE-native:native/interface/GigabitEthernet=1 -u 'cisco:cisco123!'
 
+Output/ response
+
+{
+  "Cisco-IOS-XE-native:GigabitEthernet": {
+    "name": "1",
+    "description": "VBox",
+    "ip": {
+      "address": {
+        "dhcp": {
+        }
+      }
+    },
+    "mop": {
+      "enabled": false,
+      "sysid": false
+    },
+    "Cisco-IOS-XE-ethernet:negotiation": {
+      "auto": true
+    }
+  }
+}
+
 ---
-Preparation 2
+Preparation Part 2
+
+With Cisco IOS software, it is possible to send log messages to monitor sessions 
+- monitor sessions are interactive management sessions in which the EXEC command terminal monitor has been issued.
+
+Event logging provides  visibility into the operation of a Cisco IOS device and the network into which it is deployed.
+
+Example: Set terminal line logging parameters
+Configure logging severity
+To enable the device to log messages to the monitor (terminal line), 
+use the logging monitor command. 
+To disable monitor log messages, 
+use the no form of this command.
 
 # conf t
-# logging on
-# logging monitor
+# logging monitor <severity-level>
+# logging monitor  
 # end
 
----
-root:~# 
----
-CURL COMMAND - OPTIONS
+Logging monitor & severity-level
+-- Syslog logging: enabled
+-- Trap logging: notifications
+-- Log buffer: 4096 bytes
+
+
+EXAMPLEs: CURL COMMANDS USING RESTCONF TO CONFIGURE AND TO MONITOR
+
+-1- CURL COMMAND - OPTIONS
 
 curl -i -k -X "OPTIONS" \
 "https://192.168.56.107:443/restconf/data/Cisco-IOS-XE-native:native/logging/monitor/severity" \
 -H 'Accept: application/yang-data+json' \
 -u 'cisco:cisco123!'
 
-EXAMPLE RESPONSE
+Output/ response
 HTTP/1.1 200 OK
 Server: nginx
-Date: Mon, 23 Apr 2018 15:27:57 GMT
+Date: Sun, 22 Nov 2020 20:19:35 GMT
 Content-Type: text/html
 Content-Length: 0
 Connection: keep-alive
-Allow: DELETE, GET, HEAD, PATCH, POST, PUT, OPTIONS >>>>>>>>>>> Allowed methods
+Allow: DELETE, GET, HEAD, PATCH, POST, PUT, OPTIONS
 Cache-Control: private, no-cache, must-revalidate, proxy-revalidate
 Accept-Patch: application/yang-data+xml, application/yang-data+json
 Pragma: no-cache
 
----
-CURL COMMAND - POST
-Device:~# 
-Remark => activate "logging monitor" on the device first through cli
+
+-2- CURL COMMAND - POST
+=> Configure loggin monitor with severity level "alerts"
+Remark => you may have to activate "logging monitor" on the device first (through cli)
 
 # conf t
 # logging on
 # logging monitor
 # end
-
 
 curl -i -k -X "POST" "https://192.168.56.107:443/restconf/data/Cisco-IOS-XE-native:native/logging/monitor" \
 -H 'Content-Type: application/yang-data+json' \
@@ -85,9 +180,8 @@ Etag: 1606-44036-936119
 Pragma: no-cache
 
 
-CURL COMMAND - PUT
-Device:~# 
-
+-3- CURL COMMAND - PUT
+=> Change the severity level to warnings
 curl -i -k -X "PUT" "https://192.168.56.107:443/restconf/data/Cisco-IOS-XE-native:native/logging/monitor/severity" \
 -H 'Content-Type: application/yang-data+json' \
 -H 'Accept: application/yang-data+json' \
@@ -107,9 +201,10 @@ Cache-Control: private, no-cache, must-revalidate, proxy-revalidate
 Etag: 1606-44088-916333
 Pragma: no-cache
 
-CURL COMMAND - PATCH
-Device:~# 
----
+
+-4- CURL COMMAND - PATCH
+=> Change the severity level to informational
+
 curl -i -k -X "PATCH" "https://192.168.56.107:443/restconf/data/Cisco-IOS-XE-native:native" \
 -H 'Content-Type: application/yang-data+json' \
 -H 'Accept: application/yang-data+json' \
@@ -124,7 +219,21 @@ curl -i -k -X "PATCH" "https://192.168.56.107:443/restconf/data/Cisco-IOS-XE-nat
 }
 }'
 
----
+Output/ response
+
+HTTP/1.1 204 No Content
+Server: nginx
+Date: Sun, 22 Nov 2020 20:05:15 GMT
+Content-Type: text/html
+Content-Length: 0
+Connection: keep-alive
+Last-Modified: Sun, 22 Nov 2020 20:05:15 GMT
+Cache-Control: private, no-cache, must-revalidate, proxy-revalidate
+Etag: 1606-75515-266750
+Pragma: no-cache
+
+
+--------
 SOURCES
 
 RESTCONF Protocol

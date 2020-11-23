@@ -1,0 +1,185 @@
+{
+  "Cisco-IOS-XE-native:native": {
+    "version": "16.9",
+    "boot-start-marker": [null],
+    "boot-end-marker": [null],
+    "banner": {
+      "motd": {
+        "banner": "^C"
+      }
+    },
+    "service": {
+      "timestamps": {
+        "debug": {
+          "datetime": {
+            "msec": {
+            }
+          }
+        },
+        "log": {
+          "datetime": {
+            "msec": [null]
+          }
+        }
+      }
+    },
+    "platform": {
+      "Cisco-IOS-XE-platform:console": {
+        "output": "virtual"
+      }
+    },
+    "hostname": "CSR1kv",
+    "username": [
+      {
+        "name": "cisco",
+        "privilege": 15,
+        "password": {
+          "encryption": "0",
+          "password": "cisco123"
+        }
+      }
+    ],
+    "ip": {
+      "domain": {
+        "name": "example.netacad.com"
+      },
+      "forward-protocol": {
+        "protocol": "nd"
+      },
+      "Cisco-IOS-XE-http:http": {
+        "authentication": {
+          "local": [null]
+        },
+        "server": false,
+        "secure-server": true
+      }
+    },
+    "interface": {
+      "GigabitEthernet": [
+        {
+          "name": "1",
+          "description": "VBox",
+          "ip": {
+            "address": {
+              "dhcp": {
+              }
+            }
+          },
+          "mop": {
+            "enabled": false,
+            "sysid": false
+          },
+          "Cisco-IOS-XE-ethernet:negotiation": {
+            "auto": true
+          }
+        }
+      ]
+    },
+    "control-plane": {
+    },
+    "logging": {
+      "monitor": {
+        "severity": "informational"
+      },
+      "hostip": "on"
+    },
+    "login": {
+      "on-success": {
+        "log": {
+        }
+      }
+    },
+    "multilink": {
+      "Cisco-IOS-XE-ppp:bundle-name": "authenticated"
+    },
+    "redundancy": {
+    },
+    "spanning-tree": {
+      "Cisco-IOS-XE-spanning-tree:extend": {
+        "system-id": [null]
+      }
+    },
+    "subscriber": {
+      "templating": [null]
+    },
+    "crypto": {
+      "Cisco-IOS-XE-crypto:pki": {
+        "trustpoint": [
+          {
+            "id": "TP-self-signed-1201645557",
+            "enrollment": {
+              "selfsigned": [null]
+            },
+            "revocation-check": "none",
+            "rsakeypair": {
+              "key-label": "TP-self-signed-1201645557"
+            },
+            "subject-name": "cn=IOS-Self-Signed-Certificate-1201645557"
+          }
+        ],
+        "certificate": {
+          "chain": [
+            {
+              "name": "TP-self-signed-1201645557",
+              "certificate": [
+                {
+                  "serial": "01",
+                  "certtype": "self-signed"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "license": {
+      "udi": {
+        "pid": "CSR1000V",
+        "sn": "9LLO46CN1JP"
+      }
+    },
+    "line": {
+      "console": [
+        {
+          "first": "0",
+          "logging": {
+            "synchronous": {
+            }
+          },
+          "stopbits": "1"
+        }
+      ],
+      "vty": [
+        {
+          "first": 0,
+          "last": 4,
+          "login": {
+            "local": [null]
+          },
+          "transport": {
+            "input": {
+              "input": ["ssh"]
+            }
+          }
+        },
+        {
+          "first": 5,
+          "last": 15,
+          "login": {
+            "local": [null]
+          },
+          "transport": {
+            "input": {
+              "input": ["ssh"]
+            }
+          }
+        }
+      ]
+    },
+    "Cisco-IOS-XE-diagnostics:diagnostic": {
+      "bootup": {
+        "level": "minimal"
+      }
+    }
+  }
+}
