@@ -118,8 +118,8 @@ To disable monitor log messages,
 use the no form of this command.
 
 # conf t
-# logging monitor <severity-level>
 # logging monitor  
+# logging monitor <severity-level>
 # end
 
 Logging monitor & severity-level
@@ -153,7 +153,7 @@ Pragma: no-cache
 
 -2- CURL COMMAND - POST
 => Configure loggin monitor with severity level "alerts"
-Remark => you may have to activate "logging monitor" on the device first (through cli)
+Remark => you may have to enable "logging monitor" on the device first (through cli)
 
 # conf t
 # logging monitor
