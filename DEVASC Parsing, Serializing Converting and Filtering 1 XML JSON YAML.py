@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[23]:
+# In[3]:
 
-#### DEVASC Parsing, Converting, Filtering
-#### XML, JSON, YAML
-#### Y. Rooseleer, BIASC, 2020
+
 #### XML Parsing and Regular Expressions -- difficult, prefer xmltodict
+#### DEVASC LAB 3.6.6
 import datetime
 print ("Current date and time: ")
 print(datetime.datetime.now())
@@ -36,10 +35,13 @@ print(doc)
 ####
 print('-----1-----')
 xml_in = ET.parse("netconf_file.xml")
+#xml_in = ET.parse(doc)
 print("Showing XML root data read from external file")
 print(xml_in)
 root = xml_in.getroot()
+print('-----1B-----')
 print(root.tag)
+print('-----1C-----')
 print("XML namespace")
 #### Below <.*> => match an entire string
 ####‼ group() Return the string matched by the RE
@@ -127,9 +129,10 @@ print(json_doc["rpc"]["edit-config"]["test-option"])
 print(json_doc["rpc"]["edit-config"]["config"]["int8.1"]["@nc:operation"])
 
 
-# In[26]:
+# In[5]:
 
 
+#### DEVASC LAB 3.6.6
 import json
 atk = {
  "access_token":"ZDI3MGEyYzQtNmFlNS00NDNhLWFlNzAtZGVjNjE0MGU1OGZmZWNmZDEwN2ItYTU3",
@@ -139,17 +142,18 @@ atk = {
 }
 print('-----1-----')
 print (type(atk))
+print('-----1B-----')
 print(atk)
 #### pretty output
 print('-----2-----')
-print(json.dumps(atk, indent=2))
+print(json.dumps(atk, indent=4))
 #### FILTERING DATA
 #### filter access-token
 print('-----3-----')
 print(atk["access_token"])
 #### TRANSFORMING DATA TYPES
 print('-----4-----')
-ats = json.dumps(atk)
+ats = json.dumps(atk)  #### SERIALIZATION
 print(type(ats))
 ####
 print('-----5-----')
@@ -157,7 +161,7 @@ atj = json.loads(ats)
 print(type(atj))
 
 
-# In[8]:
+# In[7]:
 
 
 import json
@@ -168,6 +172,7 @@ access_token: ZDI3MGEyYzQtNmFlNS00NDNhLWFlNzAtZGVjNjE0MGU1OGZmZWNmZDEwN2ItYTU3
 expires_in: 1209600
 refresh_token: MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MDEyMzQ1Njc4OTEyMzQ1Njc4
 refreshtokenexpires_in: 7776000
+...
 """
 print(type(doc))
 print(doc)
@@ -175,12 +180,12 @@ print(doc)
 #Warning: It is not safe to call yaml.load with any data received from an untrusted source, therefore "safe_load"
 ###The yaml.dump function accepts a Python object and produces a YAML document.
 acc = yaml.safe_load(doc)
-print('------------')
+print('------1------')
 print (type(acc))
-print('------------')
+print('------2------')
 print(acc)
 at = acc['access_token']
-print('------------')
+print('------3------')
 print(at)
 
 
@@ -406,7 +411,7 @@ doc = xmltodict.parse(
                         <netmask>255.255.255.0</netmask>
                     </address>
                 </ipv4>
-                <ipv6/>
+                <ipv6/> 
             </interface>  
         </interfaces>
     </data>
@@ -605,7 +610,7 @@ print('Prettified')
 print(json.dumps(data_d, indent=2))
 
 
-# In[19]:
+# In[8]:
 
 
 #### DICT => JSON => YAML
@@ -619,11 +624,11 @@ print('Starting dict, filtering, formating, converting ...')
 ####
 userlist = {           
   "users": [
-      {"username": "GHI","code": "GHI123951" },
-      {"username": "ABC","code": "ABC123951" },
-      {"username": "DEF","code": "DEF123951" },
-      {"username": "JKL","code": "JKL123951" },
-      {"username": "MNO","code": "MNO123951" },
+      {"username": "AAA","code": "AAA123951" },
+      {"username": "BBB","code": "BBB123951" },
+      {"username": "CCC","code": "CCC123951" },
+      {"username": "DDD","code": "DDD123951" },
+      {"username": "EEE","code": "EEE123951" },
    ]
 }
 print("\n------1------")
@@ -645,7 +650,7 @@ for usr in userlist["users"]:
     print(usr["username"])
 print("------4-----")
 print("Showing dict in indented JSON format")
-userlist_out = json.dumps(userlist, indent=8)
+userlist_out = json.dumps(userlist, indent=4)
 print(type(userlist_out))
 print(userlist_out)
 print("------5-----")
@@ -857,29 +862,42 @@ for it in root.iter():
 #print(testop.text)
 
 
-# In[ ]:
+# In[24]:
 
 
-#!pip install dicttoxml
-import dicttoxml   
-import requests    
-auth = {           
-  "user": {
-    "username": "myemail@mydomain.com",
-    "key": "90823ff08409408aebcf4320384"
-  }
-}
+users = [
+    {           
+       "email": "userA@mydomain.com",
+       "API key": "90823ff08409408aebcf4320384"
+    } ,
+    {           
+       "email": "userB@mydomain.com",
+       "API key": "12345687fdfdv1313fdgsdg123"
+    } 
+]
+
 print("------1------")
-print(type(auth))
+print(type(users))
 print("------2------")
-print(auth)
+print(users)
 print("------3------")
-print(auth["user"]["username"])
-print("----------------")
+print(users[0]["email"])
+print(users[1]["email"])
+### => create loop
+print("------3b-----")
+print("Showing users using loop")
+for usr in users:
+    print(usr["email"])
 #get_services_query = "https://myservice.com/status/services"
 ####xmlstring = dicttoxml(auth)     
 #myresponse = requests.get(get_services_query,auth=xmlstring)  
 ###print(xmlstring)
+print("------4------")
+####yaml
+users_yaml = yaml.dump(users)
+print(type(users_yaml))
+print("\n---")
+print(users_yaml)
 
 
 # In[ ]:
@@ -938,7 +956,7 @@ print(type(yang_config))
 #doc_x = dicttoxml.parseString(yang_config)
 
 
-# In[ ]:
+# In[1]:
 
 
 #### XML Parsing and Regular Expressions -- config example
@@ -977,7 +995,37 @@ docj = json.loads(docs)
 print(type(docj))
 
 
-# In[ ]:
+# In[2]:
+
+
+#### RUN THE CELL ABOVE, ANALYSE OUTPUT AND FILTER SPECIFIC ITEMS
+print('-----1-----')
+print('hostname', end=': ')
+filtered_item = doc["rpc-reply"]["data"]["native"]["hostname"]
+print(filtered_item)
+print('-----2-----')
+print('version', end=': ')
+filtered_item = doc["rpc-reply"]["data"]["native"]["version"]
+print(filtered_item)
+print('-----3-----')
+print('interface name', end=': ')
+filtered_item = doc["rpc-reply"]["data"]["interfaces"][0]["interface"]["name"]
+print(filtered_item)
+print('-----4-----')
+print('interface description', end=': ')
+filtered_item = doc["rpc-reply"]["data"]["interfaces"][0]["interface"]["config"]["description"]
+print(filtered_item)
+print('-----5-----')
+print('interface enabled', end=': ')
+filtered_item = doc["rpc-reply"]["data"]["interfaces"][0]["interface"]["config"]["enabled"]
+print(filtered_item)
+print('-----6-----')
+print('interface mac address', end=': ')
+filtered_item = doc["rpc-reply"]["data"]["interfaces"][0]["interface"]["ethernet"]["config"]["mac-address"]
+print(filtered_item)
+
+
+# In[3]:
 
 
 #### XML Parsing with xml.dom.minidom
@@ -995,3 +1043,488 @@ print(type(xml_in))
 xml_out = xml_in.toprettyxml()
 print(type(xml_out))
 print(xml_out)
+
+
+# In[6]:
+
+
+#### ANSIBLE FACTS
+import datetime
+print("Current date and time: ")
+print(datetime.datetime.now())
+print("Reading ansible facts from CSR1Kv")
+import json
+str_in = open("CSR1Kv_ansible_facts.json").read()
+print(type(str_in))
+#print(str_in)
+js_dict = json.loads(str_in)
+print(type(js_dict))
+#print(js_dict)
+print("========")
+print(json.dumps(js_dict, indent=4))
+
+
+# In[1]:
+
+
+#### RESTCONF - saved running config
+import datetime
+print("Current date and time: ")
+print(datetime.datetime.now())
+print("Reading ansible facts from CSR1Kv")
+import json
+str_in = open("csr1Kv.json").read()
+print(type(str_in))
+#print(str_in)
+js_dict = json.loads(str_in)
+print(type(js_dict))
+#print(js_dict)
+print("========")
+print(json.dumps(js_dict, indent=4))
+
+
+# In[3]:
+
+
+#### RESTCONF running config json => yaml (readability)
+import yaml
+yaml_data = yaml.dump(js_dict)
+print(yaml_data)
+
+
+# In[ ]:
+
+
+#### NOT FINISHED
+import json
+str_in = open("path_trace_data.json").read()
+#print(type(str_in))
+print(str_in)
+js_dict = json.loads(str_in)
+print(type(js_dict))
+#print(js_dict)
+print(js_dict["response"]["request"]["sourceIP"])
+print(js_dict["response"]["request"]["destIP"])
+from_to = []
+n = 0
+for r in js_dict["response"]["networkElementsInfo"]:
+    print(json.dumps(r, indent=4))
+    #print(r["id"])
+    #print(r["type"])
+    n += 1
+    #print(itm1 + "--" + itm2 + "--" +  itm3)
+    #from_to.append(itm1)
+
+
+# In[ ]:
+
+
+#### NOT FINISHED
+import xml.dom.minidom
+myxml = """<data>
+    <element>
+        <name>myname</name>
+    </element>
+    <element>
+        <code>3</code>
+        <name>another name</name>
+    </element>
+</data>
+"""
+
+dom = xml.dom.minidom.parseString(myxml)
+nodelist = dom.getElementsByTagName("element")[1].getElementsByTagName("name")
+for node in nodelist:
+    print node.toxml()
+
+
+# In[ ]:
+
+
+import datetime
+print ("Current date and time: ")
+print(datetime.datetime.now())
+print('Starting  -- XML PARSING RUNNING CONFIG')
+import xmltodict
+import json
+########
+data_d = xmltodict.parse(
+    """
+<data>
+		<native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+			<version>16.9</version>
+			<boot-start-marker/>
+			<boot-end-marker/>
+			<banner>
+				<motd>
+					<banner>^C</banner>
+				</motd>
+			</banner>
+			<service>
+				<timestamps>
+					<debug>
+						<datetime>
+							<msec/>
+						</datetime>
+					</debug>
+					<log>
+						<datetime>
+							<msec/>
+						</datetime>
+					</log>
+				</timestamps>
+			</service>
+			<platform>
+				<console xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-platform">
+					<output>virtual</output>
+				</console>
+			</platform>
+			<hostname>CSR1kv</hostname>
+			<username>
+				<name>cisco</name>
+				<privilege>15</privilege>
+				<password>
+					<encryption>0</encryption>
+					<password>cisco123</password>
+				</password>
+			</username>
+			<ip>
+				<forward-protocol>
+					<protocol>nd</protocol>
+				</forward-protocol>
+				<http xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-http">
+					<authentication>
+						<local/>
+					</authentication>
+					<server>false</server>
+					<secure-server>true</secure-server>
+				</http>
+			</ip>
+			<interface>
+				<GigabitEthernet>
+					<name>1</name>
+					<description>VBox</description>
+					<ip>
+						<address>
+							<dhcp/>
+						</address>
+					</ip>
+					<mop>
+						<enabled>false</enabled>
+						<sysid>false</sysid>
+					</mop>
+					<negotiation xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ethernet">
+						<auto>true</auto>
+					</negotiation>
+				</GigabitEthernet>
+			</interface>
+			<control-plane/>
+			<login>
+				<on-success>
+					<log/>
+				</on-success>
+			</login>
+			<multilink>
+				<bundle-name xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ppp">authenticated</bundle-name>
+			</multilink>
+			<redundancy/>
+			<spanning-tree>
+				<extend xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-spanning-tree">
+					<system-id/>
+				</extend>
+			</spanning-tree>
+			<subscriber>
+				<templating/>
+			</subscriber>
+			<crypto>
+				<pki xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-crypto">
+					<trustpoint>
+						<id>TP-self-signed-53336613</id>
+						<enrollment>
+							<selfsigned/>
+						</enrollment>
+						<revocation-check>none</revocation-check>
+						<rsakeypair>
+							<key-label>TP-self-signed-53336613</key-label>
+						</rsakeypair>
+						<subject-name>cn=IOS-Self-Signed-Certificate-53336613</subject-name>
+					</trustpoint>
+					<certificate>
+						<chain>
+							<name>TP-self-signed-53336613</name>
+							<certificate>
+								<serial>01</serial>
+								<certtype>self-signed</certtype>
+							</certificate>
+						</chain>
+					</certificate>
+				</pki>
+			</crypto>
+			<license>
+				<udi>
+					<pid>CSR1000V</pid>
+					<sn>9QT3VV89LVW</sn>
+				</udi>
+			</license>
+			<line>
+				<console>
+					<first>0</first>
+					<stopbits>1</stopbits>
+				</console>
+				<vty>
+					<first>0</first>
+					<last>4</last>
+					<login>
+						<local/>
+					</login>
+					<transport>
+						<input>
+							<input>ssh</input>
+						</input>
+					</transport>
+				</vty>
+				<vty>
+					<first>5</first>
+					<last>15</last>
+					<login>
+						<local/>
+					</login>
+					<transport>
+						<input>
+							<input>ssh</input>
+						</input>
+					</transport>
+				</vty>
+			</line>
+			<diagnostic xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-diagnostics">
+				<bootup>
+					<level>minimal</level>
+				</bootup>
+			</diagnostic>
+		</native>
+		<licensing xmlns="http://cisco.com/ns/yang/cisco-smart-license">
+			<config>
+				<enable>false</enable>
+				<privacy>
+					<hostname>false</hostname>
+					<version>false</version>
+				</privacy>
+				<utility>
+					<utility-enable>false</utility-enable>
+				</utility>
+			</config>
+		</licensing>
+		<interfaces xmlns="http://openconfig.net/yang/interfaces">
+			<interface>
+				<name>GigabitEthernet1</name>
+				<config>
+					<name>GigabitEthernet1</name>
+					<type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+					<description>VBox</description>
+					<enabled>true</enabled>
+				</config>
+				<subinterfaces>
+					<subinterface>
+						<index>0</index>
+						<config>
+							<index>0</index>
+							<description>VBox</description>
+							<enabled>true</enabled>
+						</config>
+						<ipv6 xmlns="http://openconfig.net/yang/interfaces/ip">
+							<config>
+								<enabled>false</enabled>
+							</config>
+						</ipv6>
+					</subinterface>
+				</subinterfaces>
+				<ethernet xmlns="http://openconfig.net/yang/interfaces/ethernet">
+					<config>
+						<mac-address>08:00:27:65:7f:ff</mac-address>
+						<auto-negotiate>true</auto-negotiate>
+					</config>
+				</ethernet>
+			</interface>
+		</interfaces>
+		<network-instances xmlns="http://openconfig.net/yang/network-instance">
+			<network-instance>
+				<name>default</name>
+				<config>
+					<name>default</name>
+					<type xmlns:oc-ni-types="http://openconfig.net/yang/network-instance-types">oc-ni-types:DEFAULT_INSTANCE</type>
+					<description>default-vrf [read-only]</description>
+				</config>
+				<tables>
+					<table>
+						<protocol xmlns:oc-pol-types="http://openconfig.net/yang/policy-types">oc-pol-types:DIRECTLY_CONNECTED</protocol>
+						<address-family xmlns:oc-types="http://openconfig.net/yang/openconfig-types">oc-types:IPV4</address-family>
+						<config>
+							<protocol xmlns:oc-pol-types="http://openconfig.net/yang/policy-types">oc-pol-types:DIRECTLY_CONNECTED</protocol>
+							<address-family xmlns:oc-types="http://openconfig.net/yang/openconfig-types">oc-types:IPV4</address-family>
+						</config>
+					</table>
+					<table>
+						<protocol xmlns:oc-pol-types="http://openconfig.net/yang/policy-types">oc-pol-types:DIRECTLY_CONNECTED</protocol>
+						<address-family xmlns:oc-types="http://openconfig.net/yang/openconfig-types">oc-types:IPV6</address-family>
+						<config>
+							<protocol xmlns:oc-pol-types="http://openconfig.net/yang/policy-types">oc-pol-types:DIRECTLY_CONNECTED</protocol>
+							<address-family xmlns:oc-types="http://openconfig.net/yang/openconfig-types">oc-types:IPV6</address-family>
+						</config>
+					</table>
+					<table>
+						<protocol xmlns:oc-pol-types="http://openconfig.net/yang/policy-types">oc-pol-types:STATIC</protocol>
+						<address-family xmlns:oc-types="http://openconfig.net/yang/openconfig-types">oc-types:IPV4</address-family>
+						<config>
+							<protocol xmlns:oc-pol-types="http://openconfig.net/yang/policy-types">oc-pol-types:STATIC</protocol>
+							<address-family xmlns:oc-types="http://openconfig.net/yang/openconfig-types">oc-types:IPV4</address-family>
+						</config>
+					</table>
+					<table>
+						<protocol xmlns:oc-pol-types="http://openconfig.net/yang/policy-types">oc-pol-types:STATIC</protocol>
+						<address-family xmlns:oc-types="http://openconfig.net/yang/openconfig-types">oc-types:IPV6</address-family>
+						<config>
+							<protocol xmlns:oc-pol-types="http://openconfig.net/yang/policy-types">oc-pol-types:STATIC</protocol>
+							<address-family xmlns:oc-types="http://openconfig.net/yang/openconfig-types">oc-types:IPV6</address-family>
+						</config>
+					</table>
+				</tables>
+				<protocols>
+					<protocol>
+						<identifier xmlns:oc-pol-types="http://openconfig.net/yang/policy-types">oc-pol-types:STATIC</identifier>
+						<name>DEFAULT</name>
+						<config>
+							<identifier xmlns:oc-pol-types="http://openconfig.net/yang/policy-types">oc-pol-types:STATIC</identifier>
+							<name>DEFAULT</name>
+						</config>
+					</protocol>
+					<protocol>
+						<identifier xmlns:oc-pol-types="http://openconfig.net/yang/policy-types">oc-pol-types:DIRECTLY_CONNECTED</identifier>
+						<name>DEFAULT</name>
+						<config>
+							<identifier xmlns:oc-pol-types="http://openconfig.net/yang/policy-types">oc-pol-types:DIRECTLY_CONNECTED</identifier>
+							<name>DEFAULT</name>
+						</config>
+					</protocol>
+				</protocols>
+			</network-instance>
+		</network-instances>
+		<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+			<interface>
+				<name>GigabitEthernet1</name>
+				<description>VBox</description>
+				<type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+				<enabled>true</enabled>
+				<ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip"/>
+				<ipv6 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip"/>
+			</interface>
+		</interfaces>
+		<nacm xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-acm">
+			<enable-nacm>true</enable-nacm>
+			<read-default>deny</read-default>
+			<write-default>deny</write-default>
+			<exec-default>deny</exec-default>
+			<enable-external-groups>true</enable-external-groups>
+			<rule-list>
+				<name>admin</name>
+				<group>PRIV15</group>
+				<rule>
+					<name>permit-all</name>
+					<module-name>*</module-name>
+					<access-operations>*</access-operations>
+					<action>permit</action>
+				</rule>
+			</rule-list>
+		</nacm>
+		<routing xmlns="urn:ietf:params:xml:ns:yang:ietf-routing">
+			<routing-instance>
+				<name>default</name>
+				<description>default-vrf [read-only]</description>
+				<routing-protocols>
+					<routing-protocol>
+						<type>static</type>
+						<name>1</name>
+					</routing-protocol>
+				</routing-protocols>
+			</routing-instance>
+		</routing>
+	</data>
+"""
+)
+########
+#print('----------------')
+#print('RAW - serialized - string')
+#print(data_d)
+print('----------------')
+print('Prettified')
+print(json.dumps(data_d, indent=2))
+
+
+# In[6]:
+
+
+import datetime
+print ("Current date and time: ")
+print(datetime.datetime.now())
+print('Recursive printing dict')  
+
+#version A
+def recursive_print(src, dpth = 0, key = ''):
+    """ Recursively prints nested elements."""
+    tabs = lambda n: ' ' * n * 4 # or 2 or 8 or...
+    brace = lambda s, n: '%s%s%s' % (''*n, s, ''*n)
+
+    if isinstance(src, dict):
+        for key, value in src.items():
+            print(tabs(dpth) + brace(key, dpth))
+            recursive_print(value, dpth + 1, key)
+    elif isinstance(src, list):
+        for litem in src:
+            recursive_print(litem, dpth)
+    else:
+        if key:
+            print(tabs(dpth) + '%s = %s' % (key, src))
+        else:
+            print(tabs(dpth) + '- %s' % src)
+
+def recursive_print2(src, dpth = 0, key = ''):
+    """ Recursively prints nested elements."""
+    tabs = lambda n: '-' * n * 1 # or 2 or 4 or 8 or...
+    brace = lambda s, n: '%s%s%s' % (''*n, s, ''*n)
+    #print(src)
+    if isinstance(src, dict):
+        for key, value in src.items():
+            print(tabs(dpth) + brace(key, dpth))
+            recursive_print(value, dpth + 1, key)
+    elif isinstance(src, list):
+        for litem in src:
+            recursive_print2(litem, dpth)
+    else:
+        if key:
+            #print(tabs(dpth) + '%s = %s' % (key, src))
+            print(tabs(dpth)) # + '%s' % (key))
+        else:
+            # print(tabs(dpth) + '-%s' % src)
+            None
+
+#version B
+def print_dict(dictionary, ident = '', braces=1):
+    """ Recursively prints nested dictionaries."""
+
+    for key, value in dictionary.items():
+        if isinstance(value, dict):
+            print('%s%s%s%s' %(ident,braces*'[',key,braces*']'))
+            print_dict(value, ident+'  ', braces+1)
+        else:
+            print(ident+'%s = %s' %(key, value))
+
+example_dict = { 'key1' : 'value1',
+                 'key2' : 'value2',
+                 'key3' : { 'key3a': 'value3a' },
+                 'key4' : { 'key4a': { 'key4aa': 'value4aa',
+                                       'key4ab': 'value4ab',
+                                       'key4ac': 'value4ac'},
+                             'key4b': 'value4b'}
+               }
+#print_dict(example_dict)
+recursive_print2(example_dict)
+
