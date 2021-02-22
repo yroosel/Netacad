@@ -1,0 +1,66 @@
+{
+	"groups": [{
+		"group_name": "DEVOPS_A",
+		"members": [{
+			"person_name": "Paulo Callebaut",
+			"email": "paulo.callebaut@student.odisee.be"
+		}, {
+			"person_name": "Michael Hertsens",
+			"email": "michael.hertsens@student.odisee.be"
+		}, {
+			"person_name": "Adrian Rocha",
+			"email": "adrian.rocha@student.odisee.be"
+		}, {
+			"person_name": "Larry Jeremiah",
+			"email": "larry.jeremiah@student.odisee.be"
+		}, {
+			"person_name": "Maarten Miers",
+			"email": "maarten.miers@student.odisee.be"
+		}, {
+			"person_name": "Mohamed Saidi",
+			"email": "mohamed.saidi@student.odisee.be"
+		}]
+	}, {
+		"group_name": "DEVOPS_B",
+		"members": [{
+			"person_name": "Jordy Dehaes",
+			"email": "jordy.dehaes@student.odisee.be"
+		}, {
+			"person_name": "Marie Verlinden",
+			"email": "marie.verlinden@student.odisee.be"
+		}, {
+			"person_name": "Alexander Screve",
+			"email": "alexander.screve@student.odisee.be"
+		}, {
+			"person_name": "Mathias Loosen",
+			"email": "mathias.loosen@student.odisee.be"
+		}, {
+			"person_name": "Dzmitry Kunitski",
+			"email": "dzmitry.kunitski@student.odisee.be"
+		}, {
+			"person_name": "Cem Yilmaz",
+			"email": "cem.yilmaz@student.odisee.be"
+		}]
+	}, {
+		"group_name": "DEVOPS_C",
+		"members": [{
+			"person_name": "Mohamed Bouzouf ",
+			"email": "mohamed.bouzouf@student.odisee.be"
+		}, {
+			"person_name": "Mohammed Berrahou",
+			"email": "mohammed.berrahou@student.odisee.be"
+		}, {
+			"person_name": "Mohamed Ahdour",
+			"email": "mohamed.ahdour@student.odisee.be"
+		}, {
+			"person_name": "Dario Beneventi",
+			"email": "dario.beneventi@student.odisee.be"
+		}, {
+			"person_name": "Maxim Cirnici",
+			"email": "maxim.cirnici@student.odisee.be"
+		}, {
+			"person_name": "Marwan Sahil",
+			"email": "marwan.sahil@student.odisee.be"
+		}]
+	}]
+}

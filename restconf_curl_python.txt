@@ -8,6 +8,7 @@ Preparation Part 1
 -1-
 Verify  RESTCONF server is up and running with a quick curl test: XML
 curl -k https://192.168.56.107/restconf/ -u 'cisco:cisco123!'
+curl -k https://10.10.20.48/restconf/ -u 'developer:C1sco12345'
 
 Output/ response
 <restconf xmlns="urn:ietf:params:xml:ns:yang:ietf-restconf">
@@ -46,6 +47,7 @@ Partial output/response
 -4-
 Retrieve the full running configuration /JSON
 curl -H "Accept: application/yang-data+json" -k https://192.168.56.107/restconf/data/Cisco-IOS-XE-native:native/ -u 'cisco:cisco123!'
+curl -H "Accept: application/yang-data+json" -k https://10.10.20.48/restconf/data/Cisco-IOS-XE-native:native/ -u 'developer:C1sco12345'
 
 Partial output/ response
 
