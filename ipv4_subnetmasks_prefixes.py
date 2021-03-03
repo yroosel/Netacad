@@ -129,8 +129,8 @@ if __name__ == "__main__":
     net_mask = get_netmask(net_prefix)
     net_bits = get_network_bits(net_mask)
     print(net_bits)
-    net_number_addr =  get_number_ip_addresses('/24')
-    net_number_ip_hosts =  get_number_ip_hosts('/24')
+    net_number_addr =  get_number_ip_addresses('/26')
+    net_number_ip_hosts =  get_number_ip_hosts('/26')
     print(net_number_addr)
     print(net_number_ip_hosts)
 
