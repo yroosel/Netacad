@@ -1,15 +1,18 @@
 # Netacad-DEVASC
-# Version 2.1
-Demos and examples for the DevNet Associate Instructor Training
--01- Exam Question Sample Webex Teams API Script
--02- Micro Web Framework API Scripts (Flask)
--03- unittest example scripts
--04- Google Geocoding API
--05- Cisco DNA Center Hello Network Simple
--06- DEVASC Parsing, Converting, Filtering
--07- NETMIKO examples
--08- Webex Teams API and SDK example
--09- NETCONF examples
--10- RESTCONF examples
--11- IPv4 examples
+# Version 2.2.2021.03.24
+Demos and examples for the Cisco Networking Academy DevNet Associate Instructor Training
+- Python scripts
+- curl
+- Google Geocoding API
+- Data Exchange Formats: Parsing, Converting, Filtering
+- unittest 
+- IPv4 
+- Cisco DNA Center Hello Network Simple
+- NETCONF 
+- RESTCONF
+- Ansible 
+- NETMIKO 
+- Micro Web Framework API (Flask)
+- Webex Teams API and SDK 
+- Exam Questions Webex Teams API 
 
