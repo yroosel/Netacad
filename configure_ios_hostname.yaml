@@ -1,0 +1,11 @@
+---
+- name: configure devices 
+  hosts: csr
+  gather_facts: false
+  connection: local
+
+  tasks:
+  - name: configure hostname
+    ios_system:
+      hostname: "CSR1Kv"
+

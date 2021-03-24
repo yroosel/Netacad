@@ -1,0 +1,16 @@
+---
+- name: Configure loopback using ios_interface
+  hosts: csr
+  gather_facts: no
+  connection: local
+
+  tasks:
+    - name: Creating loopback 
+      ios_interface:
+        name: Loopback100
+        enabled: True
+        description: Loopback interface 100 created with Ansible
+    - name: Assign IP to loopback
+      ios_l3_interface:
+        name: Loopback100
+        ipv4: 10.10.10.100/32

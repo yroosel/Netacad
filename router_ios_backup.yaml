@@ -1,0 +1,17 @@
+---
+- name: AUTOMATIC BACKUP OF RUNNING-CONFIG
+  hosts: csr
+  gather_facts: false
+  connection: local
+ 
+  tasks:
+   - name: DISPLAYING THE RUNNING-CONFIG
+     ios_command:
+       commands:
+         - show running-config  
+     register: config
+ 
+   - name: SAVE OUTPUT TO ./backups/
+     copy:
+       content: "{{ config.stdout[0] }}"
+       dest: "./backups/show_run_{{ inventory_hostname }}.txt"
