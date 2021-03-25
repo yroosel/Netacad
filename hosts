@@ -1,0 +1,11 @@
+[routers]
+CSR1kv ansible_host=192.168.56.107 ansible_user=cisco ansible_password=cisco123! 
+
+[csr]
+CSR1kv ansible_host=192.168.56.107 ansible_user=cisco ansible_password=cisco123! 
+
+[sandbox]
+iosxe ansible_host="ios-xe-mgmt.cisco.com" ansible_user="developer" ansible_password="C1sco12345" ansible_port="8181"
+
+[webservers]
+192.0.2.3 ansible_ssh_user=devasc ansible_ssh_pass=Cisco123!
