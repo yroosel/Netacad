@@ -1,0 +1,13 @@
+do 01/04/2021 
+START CURL LOGIN SCRIPT 
+Deleting all test records 
+Test records deleted
+Creating new user v1 insecure 
+Signup success, but insecure
+Testing login v1 
+Login success, but insecure
+Creating new user v2 secure 
+Secure signup succeeded
+Testing login v2 
+Login sucess, using hash
+END CURL LOGIN SCRIPT 
