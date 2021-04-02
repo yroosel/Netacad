@@ -15,7 +15,7 @@ do
   cat $f | grep hostname  
   IOS_VERSION=$(cat $f | grep $VERSION_SEARCH_TEXT | cut -d' ' -f2)
   echo Current IOS Version: $IOS_VERSION
-  if [ $REQUIRED_IOS != $IOS_VERSION ] ;
+  if [ $REQUIRED_IOS != $IOS_VERSION ] 
   then
     echo Upgrade ios version to: $REQUIRED_IOS
   else 
