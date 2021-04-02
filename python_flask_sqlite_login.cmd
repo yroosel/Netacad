@@ -2,6 +2,7 @@ REM # TESTING FROM THE COMMAND LINE
 REM # test script for flask_app_login.py -- use in Windows OS, not in Docker
 REM # programm flask_app_login needs to be running
 REM # curl needs double quotes for https in microsoft windows
+@echo off
 cls
 date /T > curl_login.txt
 echo START CURL LOGIN SCRIPT >> curl_login.txt
@@ -16,4 +17,5 @@ curl -k -X POST -F "username=bbsec" -F "password=123951" "https://127.0.0.1:5555
 echo Testing login v2 >> curl_login.txt
 curl -k -X POST -F "username=bbsec" -F "password=123951" "https://127.0.0.1:5555/login/v2" >> curl_login.txt
 echo END CURL LOGIN SCRIPT >> curl_login.txt
+echo
 more curl_login.txt
